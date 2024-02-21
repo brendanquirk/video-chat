@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import {
+  MeetingProvider,
+  MeetingConsumer,
+  useMeeting,
+  useParticipant,
+} from '@videosdk.live/react-sdk'
+import { authToken, createMeeting } from './API'
+import ReactPlayer from 'react-player'
+import JoinScreen from './components/JoinScreen'
 
-function App() {
+const App = () => {
+  const [meetingId, setMeetingId] = useState<string | null>(null)
+
+  const getMeetingAndToken = async (id?: string) => {
+    const meetingId =
+      id == null ? await createMeeting({ token: authToken }) : id
+    setMeetingId(meetingId)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <h1>Video Chat App</h1>
+      <JoinScreen getMeetingAndToken={getMeetingAndToken} />
+    </>
+  )
 }
 
-export default App;
+export default App
