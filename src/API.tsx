@@ -1,5 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config()
 export const authToken = process.env.REACT_APP_API_KEY
 
 // API call to create a meeting
