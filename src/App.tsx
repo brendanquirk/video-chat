@@ -7,7 +7,8 @@ import {
 } from '@videosdk.live/react-sdk'
 import { authToken, createMeeting } from './API'
 import ReactPlayer from 'react-player'
-import JoinScreen from './components/JoinScreen'
+import JoinScreen from './components/JoinScreen/JoinScreen'
+import MeetingScreen from './components/MeetingScreen/MeetingScreen'
 
 const App = () => {
   const [meetingId, setMeetingId] = useState<string | null>(null)
@@ -19,11 +20,18 @@ const App = () => {
     setMeetingId(meetingId)
   }
 
+  const onMeetingLeave = () => {
+    setMeetingId(null)
+  }
+
   return (
     <>
       <h1>Video Chat App</h1>
-      <h2>{meetingId}</h2>
-      <JoinScreen getMeetingAndToken={getMeetingAndToken} />
+      {meetingId ? (
+        <MeetingScreen onMeetingLeave={onMeetingLeave} meetingId={meetingId} />
+      ) : (
+        <JoinScreen getMeetingAndToken={getMeetingAndToken} />
+      )}
     </>
   )
 }

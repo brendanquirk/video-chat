@@ -9,6 +9,7 @@ const JoinScreen = ({
   const onClick = async () => {
     getMeetingAndToken(meetingId)
   }
+
   return (
     <div>
       <input
