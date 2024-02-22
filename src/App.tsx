@@ -13,6 +13,7 @@ const App = () => {
   const [meetingId, setMeetingId] = useState<string | null>(null)
 
   const getMeetingAndToken = async (id?: string) => {
+    console.log(authToken)
     const meetingId =
       id == null ? await createMeeting({ token: authToken }) : id
     setMeetingId(meetingId)
@@ -21,6 +22,7 @@ const App = () => {
   return (
     <>
       <h1>Video Chat App</h1>
+      <h2>{meetingId}</h2>
       <JoinScreen getMeetingAndToken={getMeetingAndToken} />
     </>
   )

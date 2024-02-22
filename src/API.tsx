@@ -1,11 +1,11 @@
-export const authToken = process.env.REACT_APP_API_KEY
+export const authToken = process.env.REACT_APP_TOKEN
 
 // API call to create a meeting
-export const createMeeting = async ({ token }: { token: typeof authToken }) => {
+export const createMeeting = async ({ token }: { token: string }) => {
   const res = await fetch(`https://api.videosdk.live/v2/rooms`, {
     method: 'POST',
     headers: {
-      authorization: `${token}`,
+      authorization: `${authToken}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({}),
