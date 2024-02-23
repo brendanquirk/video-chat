@@ -6,6 +6,7 @@ const JoinScreen = ({
   getMeetingAndToken: (meeting?: string) => void
 }) => {
   const [meetingId, setMeetingId] = useState<string | undefined>()
+
   const onClick = async () => {
     getMeetingAndToken(meetingId)
   }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useMeeting } from '@videosdk.live/react-sdk'
+
 const MeetingScreen = ({
   onMeetingLeave,
   meetingId,
@@ -9,7 +10,7 @@ const MeetingScreen = ({
 }) => {
   const [joined, setJoined] = useState<string | null>(null)
 
-  const join = useMeeting({
+  const { join, participants } = useMeeting({
     onMeetingJoined: () => {
       setJoined('JOINED')
     },
@@ -18,14 +19,11 @@ const MeetingScreen = ({
     },
   })
 
-  const joinMeeting = () => {
-    setJoined('JOINING')
-  }
-
   return (
     <>
       <div className="container">
         <h3>Meeting Id: {meetingId}</h3>
+        {/* <h4>{joined}</h4> */}
       </div>
     </>
   )
