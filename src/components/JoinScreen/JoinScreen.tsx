@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useMeeting } from '@videosdk.live/react-sdk'
 
 const JoinScreen = ({
   getMeetingAndToken,

@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { MeetingProvider } from '@videosdk.live/react-sdk'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <App />
+    <MeetingProvider
+      config={{
+        meetingId: 'meeting-id',
+        micEnabled: true,
+        webcamEnabled: true,
+        name: 'Participant Name',
+      }}
+      token={'token'}
+      joinWithoutUserInteraction // Boolean
+    >
+      <App />
+    </MeetingProvider>
   </React.StrictMode>
 )
 
