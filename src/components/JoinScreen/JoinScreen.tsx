@@ -3,12 +3,14 @@ import { useMeeting } from '@videosdk.live/react-sdk'
 
 const JoinScreen = ({
   getMeetingAndToken,
+  joinMeeting,
 }: {
   getMeetingAndToken: (meeting?: string) => void
+  joinMeeting: () => void
 }) => {
   const [meetingId, setMeetingId] = useState<string | undefined>()
 
-  const onClick = async () => {
+  const createMeeting = async () => {
     getMeetingAndToken(meetingId)
   }
 
@@ -21,9 +23,9 @@ const JoinScreen = ({
           setMeetingId(e.target.value)
         }}
       />
-      <button onClick={onClick}>Join</button>
+      <button onClick={joinMeeting}>Join</button>
       {' or '}
-      <button onClick={onClick}>Create Meeting</button>
+      <button onClick={createMeeting}>Create Meeting</button>
     </div>
   )
 }

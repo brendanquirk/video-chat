@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useMeeting } from '@videosdk.live/react-sdk'
 import { authToken, createMeeting } from './API'
 import ReactPlayer from 'react-player'
@@ -19,10 +19,15 @@ const App = () => {
     onMeetingJoined: () => {
       setJoined('JOINED')
     },
-    // onMeetingLeft: () => {
-    //   onMeetingLeave()
-    // },
+    onMeetingLeft: () => {
+      onMeetingLeave()
+    },
   })
+
+  const joinMeeting = () => {
+    setJoined('JOINING')
+    join()
+  }
 
   const onMeetingLeave = () => {
     setMeetingId(null)
@@ -38,7 +43,10 @@ const App = () => {
           joined={joined}
         />
       ) : (
-        <JoinScreen getMeetingAndToken={getMeetingAndToken} />
+        <JoinScreen
+          getMeetingAndToken={getMeetingAndToken}
+          joinMeeting={joinMeeting}
+        />
       )}
     </>
   )
