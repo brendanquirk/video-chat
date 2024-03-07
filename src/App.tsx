@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useMeeting } from '@videosdk.live/react-sdk'
 import { authToken, createMeeting } from './API'
-import ReactPlayer from 'react-player'
 import JoinScreen from './components/JoinScreen/JoinScreen'
 import MeetingScreen from './components/MeetingScreen/MeetingScreen'
+import { log } from 'console'
 
 const App = () => {
   const [meetingId, setMeetingId] = useState<string | null>(null)
@@ -32,6 +32,7 @@ const App = () => {
   const onMeetingLeave = () => {
     setMeetingId(null)
   }
+  console.log(participants)
 
   return (
     <>
@@ -40,8 +41,10 @@ const App = () => {
         <MeetingScreen
           onMeetingLeave={onMeetingLeave}
           meetingId={meetingId}
-          joined={joined}
+          // participants={participants}
         />
+      ) : joined && joined === 'JOINING' ? (
+        <p>Joining the meeting...</p>
       ) : (
         <JoinScreen
           getMeetingAndToken={getMeetingAndToken}
