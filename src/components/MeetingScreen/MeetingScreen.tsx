@@ -6,10 +6,19 @@ import ParticipantView from '../ParticipantView/ParticipantView'
 const MeetingScreen = ({
   onMeetingLeave,
   meetingId,
+  participants,
+  localParticipant,
 }: {
   onMeetingLeave: () => void
   meetingId: string
+  participants: object
+  localParticipant: object
 }) => {
+  setTimeout(() => {
+    console.log(localParticipant)
+  }, 100)
+  // console.log(localParticipant)
+
   return (
     <>
       <div className="container">
